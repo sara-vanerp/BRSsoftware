@@ -1,5 +1,5 @@
 # BRSsoftware
-A repository for the project "Bayesian regularized SEM: Current capabilities and constraints" in which an overview of literature and software on Bayesian regularized SEM is provided, with an illustration of various software packages.
+A repository for the project "Bayesian regularized SEM: Current capabilities and constraints" in which an overview of literature and software on Bayesian regularized SEM is provided, with an illustration of various software packages. The preprint is available here: https://psyarxiv.com/92vh8
 
 All code for running the empirical example and recreating the figures in the manuscript is available in the "code" directory.
 
