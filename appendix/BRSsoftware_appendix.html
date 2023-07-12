@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sara van Erp">
+
+<title>Appendix to Bayesian regularized SEM: Current capabilities and constraints</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="BRSsoftware_appendix_files/libs/clipboard/clipboard.min.js"></script>
+<script src="BRSsoftware_appendix_files/libs/quarto-html/quarto.js"></script>
+<script src="BRSsoftware_appendix_files/libs/quarto-html/popper.min.js"></script>
+<script src="BRSsoftware_appendix_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="BRSsoftware_appendix_files/libs/quarto-html/anchor.min.js"></script>
+<link href="BRSsoftware_appendix_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="BRSsoftware_appendix_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="BRSsoftware_appendix_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="BRSsoftware_appendix_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="BRSsoftware_appendix_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Appendix to Bayesian regularized SEM: Current capabilities and constraints</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sara van Erp </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This appendix summarizes the functions and calls needed to use the different software packages for (Bayesian) regularized SEM that are compared in the manuscript. This appendix is meant as a quick reference for applying these methods. Please see the documentation for each package for all functionality. For reproducing the original empirical example, please review the complete code available on <a href="https://github.com/sara-vanerp/BRSsoftware">Github</a></p>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lslx)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(blavaan)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(LAWBL)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shinystan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Before running (Bayesian) regularization, make sure the data is scaled so that the penalization affects each variable to the same extent.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">scale</span>(df, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prior-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="prior-visualization">Prior visualization</h2>
+<p>You can visualize the prior densities by sampling from the corresponding distribution in <code>R</code>. For example, to visualize a normal or ridge shrinkage prior with a standard deviation of 0.1:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(prior))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="BRSsoftware_appendix_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>To recreate the prior visualization in the manuscript, please see the code in <em>densityplots.R</em>.</p>
+</section>
+<section id="analysis-with-lslx" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-with-lslx">Analysis with <code>lslx</code></h2>
+<p>To run <code>lslx</code>, first a model needs to be specified which can be done using <code>lavaan</code> syntax. The only difference with regular <code>lavaan</code> syntax is that the user needs to specified which parameters are regularized. The code below specifies the factor model used in the empirical application.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">"F1 =~ y"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">18</span>, <span class="st">" </span><span class="sc">\n</span><span class="st">"</span>), <span class="co"># main loadings: freely estimated</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste</span>(<span class="st">"pen() * F1 =~ y"</span>, <span class="dv">19</span><span class="sc">:</span><span class="dv">36</span>,<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>), <span class="co"># cross-loadings: penalized</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste</span>(<span class="st">"F2 =~ y"</span>, <span class="dv">19</span><span class="sc">:</span><span class="dv">24</span>,<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste</span>(<span class="st">"pen() * F2 =~ y"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">18</span>,<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste</span>(<span class="st">"pen() * F2 =~ y"</span>, <span class="dv">25</span><span class="sc">:</span><span class="dv">36</span>,<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste</span>(<span class="st">"F3 =~ y"</span>, <span class="dv">25</span><span class="sc">:</span><span class="dv">36</span>,<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste</span>(<span class="st">"pen() * F3 =~ y"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>,<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>               <span class="st">"F1  ~~  1 * F1 </span><span class="sc">\n</span><span class="st">"</span>, <span class="co"># fix latent variances for identification</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>               <span class="st">"F2  ~~ 1 * F2 </span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>               <span class="st">"F3  ~~ 1 * F3"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, the model can be fit using different penalties, e.g., the lasso, elastic_net, or minimax concave penalty (mcp). In addition, a custom grid for cross-validation can be specified for the <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\delta\)</span> parameters through <code>lambda_grid</code> and <code>delta_grid</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">plsem</span>(<span class="at">model =</span> mod, <span class="at">data =</span> dat, <span class="at">penalty_method =</span> <span class="st">"lasso"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The following function can be used to extract the results, where the <code>selector</code> argument is used to indicate which information criterion should be used to select the optimal penalty level.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fit<span class="sc">$</span><span class="fu">summarize</span>(<span class="at">selector =</span> <span class="st">"bic"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analysis-with-lawbl" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-with-lawbl">Analysis with <code>LAWBL</code></h2>
+<p>To run the model with <code>LAWBL</code>, a design matrix first needs to be specified indicating which parameters are regularized (-1) or specified (1). In the empirical application, cross-loadings are regularized while main loadings are specified.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="at">nrow =</span> <span class="fu">ncol</span>(dat), <span class="at">ncol =</span> <span class="dv">3</span>) <span class="co"># -1 for unspecified (regularized) and 1 for specified (main loadings)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">colnames</span>(dat) <span class="sc">%in%</span> <span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">18</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">colnames</span>(dat) <span class="sc">%in%</span> <span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">19</span><span class="sc">:</span><span class="dv">24</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">colnames</span>(dat) <span class="sc">%in%</span> <span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">25</span><span class="sc">:</span><span class="dv">36</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Q[f1, <span class="dv">1</span>] <span class="ot">&lt;-</span> Q[f2, <span class="dv">2</span>] <span class="ot">&lt;-</span> Q[f3, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, the model can be run using the <code>pcfa</code> function. The <code>LD</code> argument specifies whether local dependence is true or not. Here, we specify no local dependence, so no (regularized) residual covariances between items. <code>cati</code> can be used in case of categorical items. Since we are running a Bayesian analysis, we need to specify sufficient iterations to ensure convergence of the posterior distribution. <code>burn</code> specifies the number of burn-in iterations that are used to move away from the initial values and will not be included in the results, while <code>iter</code> specifies the actual number of posterior simulations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">pcfa</span>(<span class="at">dat =</span> dat,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">Q =</span> Q,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">LD =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">cati =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">burn =</span> <span class="dv">2000</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">iter =</span> <span class="dv">5000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Usually, in a Bayesian analysis we would run multiple chains starting from different values and assess convergence by ensuring the chains coincide after burn-in. Unfortunately, the <code>pcfa</code> function does not include an argument to specify the number of chains so only one chain is run. Multiple chains can be run by changing the random seed via the <code>rseed</code> argument and subsequently combining the posterior draws to assess convergence.</p>
+<p><code>LAWBL</code> does provide plotting functions specifically for the eigenvalues of the factors. You can plot the trace, density, or estimated potential scale reduction (EPSR):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lawbl</span>(fit, <span class="at">what =</span> <span class="st">"trace"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lawbl</span>(fit, <span class="at">what =</span> <span class="st">"density"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lawbl</span>(fit, <span class="at">what =</span> <span class="st">"EPSR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There is also an <code>auto_stop</code> argument based on the EPSR, but such automatic criteria are not recommended. Instead, it is better to run the analysis with a specified number of iterations and rerun with, for example, double the number of iterations to ensure the results remain the same.</p>
+<p>Results can be summarized with the <code>summary</code> function. See <code>?summary.lawbl</code> for the different types of summaries that can be obtained. For example, to get the loadings you can call:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">what =</span> <span class="st">"lambda"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analysis-with-blavaan" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-with-blavaan">Analysis with <code>blavaan</code></h2>
+<p>When running the analysis in <code>blavaan</code>, we need to specify a model using <code>lavaan</code> syntax indicating which priors to use for which parameters. The code below specifies the model from the empirical application with a normal shrinkage prior with variance equal to 0.01 for the cross-loadings and a normal prior with standard deviation equal to 10 for the main loadings. Note that it is not possible to automatically change the distributional form of the prior on the loadings, this could be done by manually adapting the underlying Stan file (using <code>mcmcfile = TRUE</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>priorvar <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>priorsd <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(priorvar)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>priorCrossL <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"normal(0,"</span>, priorsd, <span class="st">")"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>priorMainL <span class="ot">&lt;-</span> <span class="st">"normal(0,10)"</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"F1 =~ prior(</span><span class="sc">\"</span><span class="st">"</span>, priorMainL, <span class="st">"</span><span class="sc">\"</span><span class="st">)*"</span>, <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">18</span>)),<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">paste0</span>(<span class="st">"F1 =~ prior(</span><span class="sc">\"</span><span class="st">"</span>, priorCrossL, <span class="st">"</span><span class="sc">\"</span><span class="st">)*"</span>, <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">19</span><span class="sc">:</span><span class="dv">36</span>)),<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">paste0</span>(<span class="st">"F2 =~ prior(</span><span class="sc">\"</span><span class="st">"</span>, priorMainL, <span class="st">"</span><span class="sc">\"</span><span class="st">)*"</span>, <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">19</span><span class="sc">:</span><span class="dv">24</span>)),<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">paste0</span>(<span class="st">"F2 =~ prior(</span><span class="sc">\"</span><span class="st">"</span>, priorCrossL, <span class="st">"</span><span class="sc">\"</span><span class="st">)*"</span>, <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">18</span>)),<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">paste0</span>(<span class="st">"F2 =~ prior(</span><span class="sc">\"</span><span class="st">"</span>, priorCrossL, <span class="st">"</span><span class="sc">\"</span><span class="st">)*"</span>, <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">25</span><span class="sc">:</span><span class="dv">36</span>)),<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">paste0</span>(<span class="st">"F3 =~ prior(</span><span class="sc">\"</span><span class="st">"</span>, priorMainL, <span class="st">"</span><span class="sc">\"</span><span class="st">)*"</span>, <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">25</span><span class="sc">:</span><span class="dv">36</span>)),<span class="st">" </span><span class="sc">\n</span><span class="st">"</span>),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">paste0</span>(<span class="st">"F3 =~ prior(</span><span class="sc">\"</span><span class="st">"</span>, priorCrossL, <span class="st">"</span><span class="sc">\"</span><span class="st">)*"</span>, <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"y"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>)))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can run the model for a specified number of MCMC chains and samples and extract the summary. This summary automatically reports the <code>Rhat</code> value for each parameter, which should be close to 1. <code>blavaan</code> will issue warnings if the model has certainly not converged based on <code>Rhat</code>. The effective sample size can be obtained as well. Finally, visual assessment of convergence can be achieved via the <code>plot.blavaan</code> function which relies on <code>bayesplot</code>. See the <code>bayesplot</code> documentation for the available plot types.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">bcfa</span>(mod, <span class="at">data =</span> dat, <span class="at">n.chains =</span> <span class="dv">4</span>, <span class="at">burnin =</span> <span class="dv">2000</span>, <span class="at">sample =</span> <span class="dv">5000</span>, <span class="at">target =</span> <span class="st">"mcmc"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">blavInspect</span>(fit, <span class="st">'neff'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">pars =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">plot.type =</span> <span class="st">"trace"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">pars =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">plot.type =</span> <span class="st">"areas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analysis-with-rstan" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-with-rstan">Analysis with <code>rstan</code></h2>
+<p>To run the analysis directly with <code>rstan</code>, a Stan model needs to be specified. The Stan models used for the empirical applications are available in the <em>code/stanmodels</em> directory on <a href="https://github.com/sara-vanerp/BRSsoftware">Github</a>. Note that these models are specific for the empirical application and should be adapted manually for other models.</p>
+<p>To run the model, we need to specify the data corresponding to the first block of the Stan model. With large models, it is also useful to specify a subset of parameters of interest to store in the results. Here, we focus on parameters from the <code>generated_quantities</code> block instead of original parameters, because these are adapted to solve sign-switching problems. We can then extract a summary, which includes numerical convergence diagnostics, or we can use <code>shinystan</code> to visualize the model and its convergence.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>standat <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="fu">nrow</span>(dat),</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">P =</span> <span class="fu">ncol</span>(dat),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">Q =</span> <span class="dv">3</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> dat,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">nC =</span> <span class="dv">72</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>stanmod <span class="ot">&lt;-</span> <span class="fu">stan_model</span>(<span class="st">"./code/stanmodels/adapt_ridge.stan"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>parsel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"psi"</span>, <span class="st">"L_main_C"</span>, <span class="st">"L_cross_C"</span>, <span class="st">"phi_C"</span>, <span class="st">"sd0"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sampling</span>(stanmod, <span class="at">data =</span> standat, <span class="at">chains =</span> <span class="dv">4</span>, <span class="at">iter =</span> <span class="dv">5000</span>, <span class="at">pars =</span> parsel)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)<span class="sc">$</span>summary</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_shinystan</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>To recreate the plots containing the results for the empirical application shown in the manuscript, see the file <em>adapt_results.R</em> on <a href="https://github.com/sara-vanerp/BRSsoftware">Github</a>.</p>
+</section>
+<section id="original-computing-environment" class="level2">
+<h2 class="anchored" data-anchor-id="original-computing-environment">Original computing environment</h2>
+<p>This is the computing environment that was used to create this document as well as run the empirical application in the manuscript.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
