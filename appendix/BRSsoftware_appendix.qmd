@@ -1,7 +1,7 @@
 ---
 title: "Appendix to Bayesian regularized SEM: Current capabilities and constraints"
 author: "Sara van Erp"
-format: html
+format: pdf
 editor: visual
 
 execute: 
@@ -83,7 +83,7 @@ f3 <- which(colnames(dat) %in% paste0("y", 25:36))
 Q[f1, 1] <- Q[f2, 2] <- Q[f3, 3] <- 1
 ```
 
-Next, the model can be run using the `pcfa` function. The `LD` argument specifies whether local dependence is true or not. Here, we specify no local dependence, so no (regularized) residual covariances between items. `cati` can be used in case of categorical items. Since we are running a Bayesian analysis, we need to specify sufficient iterations to ensure convergence of the posterior distribution. `burn` specifies the number of burn-in iterations that are used to move away from the initial values and will not be included in the results, while `iter` specifies the actual number of posterior simulations. 
+Next, the model can be run using the `pcfa` function. The `LD` argument specifies whether local dependence is true or not. Here, we specify no local dependence, so no (regularized) residual covariances between items. `cati` can be used in case of categorical items. Since we are running a Bayesian analysis, we need to specify sufficient iterations to ensure convergence of the posterior distribution. `burn` specifies the number of burn-in iterations that are used to move away from the initial values and will not be included in the results, while `iter` specifies the actual number of posterior simulations.
 
 ```{r}
 fit <- pcfa(dat = dat,
@@ -103,6 +103,7 @@ plot_lawbl(fit, what = "trace")
 plot_lawbl(fit, what = "density")
 plot_lawbl(fit, what = "EPSR")
 ```
+
 There is also an `auto_stop` argument based on the EPSR, but such automatic criteria are not recommended. Instead, it is better to run the analysis with a specified number of iterations and rerun with, for example, double the number of iterations to ensure the results remain the same.
 
 Results can be summarized with the `summary` function. See `?summary.lawbl` for the different types of summaries that can be obtained. For example, to get the loadings you can call:
@@ -142,7 +143,7 @@ plot(fit, pars = 1:3, plot.type = "areas")
 
 ## Analysis with `rstan`
 
-To run the analysis directly with `rstan`, a Stan model needs to be specified. The Stan models used for the empirical applications are available in the *code/stanmodels* directory on [Github](https://github.com/sara-vanerp/BRSsoftware). Note that these models are specific for the empirical application and should be adapted manually for other models. 
+To run the analysis directly with `rstan`, a Stan model needs to be specified. The Stan models used for the empirical applications are available in the *code/stanmodels* directory on [Github](https://github.com/sara-vanerp/BRSsoftware). Note that these models are specific for the empirical application and should be adapted manually for other models.
 
 To run the model, we need to specify the data corresponding to the first block of the Stan model. With large models, it is also useful to specify a subset of parameters of interest to store in the results. Here, we focus on parameters from the `generated_quantities` block instead of original parameters, because these are adapted to solve sign-switching problems. We can then extract a summary, which includes numerical convergence diagnostics, or we can use `shinystan` to visualize the model and its convergence.
 
@@ -170,4 +171,3 @@ This is the computing environment that was used to create this document as well 
 ```{r}
 devtools::session_info()
 ```
-
