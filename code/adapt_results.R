@@ -168,12 +168,14 @@ ggplot(outsel, aes(x = postmean, y = par, color = analysis)) +
 
 # Plots for paper
 
+pos <- position_dodge(width = 0.3)
+
 # Show per prior one parameter that is illustrative for the general pattern
 # comparison reghs algorithms
 out <- res[c(which(res$prior == "reghs_def")), ]
 out$analysis <- factor(apply(out, 1, function(x) paste(x["prior"], x["algorithm"], sep = "_")))
 levels(out$analysis) <- list("Reg. hs with VB" = "reghs_def_vb",
-                              "Reg. hs with MCMC" = "reghs_def_mcmc")
+                             "Reg. hs with MCMC" = "reghs_def_mcmc")
 outsel1 <- out[grep("F2=~y16", out$par), ]
 
 # comparison ridge specifications
@@ -219,8 +221,9 @@ levels(out$analysis) <- list("Minimax concave penalty" = "mcp_lslx",
 outsel <- out[grep(paste(cross_F1, collapse = "|"), out$par), ]
 png("./results/crossloadings.png", width = 1700, height = 1000)
 ggplot(outsel, aes(y = postmean, x = par, color = analysis)) +
-  geom_point(position = pos, size = 5) +
+  geom_point(position = pos, size = 7, stroke = 3, aes(shape = analysis)) +
   geom_hline(aes(yintercept = 0), colour = "darkgrey") +
+  scale_shape_manual(values=c(0, 1, 2, 8, 6)) +
   geom_linerange(aes(ymin = lower, ymax = upper), position = pos, size = 2) +
   ylab("Mean estimate and 95% CI") + xlab("") + theme_bw(base_size = 40) +
   theme(legend.title = element_blank(), legend.position = "bottom")
@@ -241,8 +244,9 @@ levels(out$analysis) <- list("Minimax concave penalty" = "mcp_lslx",
 outsel <- out[grep("F1~~F2|F1~~F3|F2~~F3", out$par), ]
 png("./results/factorcorrelations.png", width = 1700, height = 1000)
 ggplot(outsel, aes(y = postmean, x = par, color = analysis)) +
-  geom_point(position = pos, size = 5) +
+  geom_point(position = pos, size = 7, stroke = 3, aes(shape = analysis)) +
   geom_hline(aes(yintercept = 0), colour = "darkgrey") +
+  scale_shape_manual(values=c(0, 1, 2, 8, 6, 7)) +
   geom_linerange(aes(ymin = lower, ymax = upper), position = pos, size = 2) +
   ylab("Mean estimate and 95% CI") + xlab("") + theme_bw(base_size = 40) +
   theme(legend.title = element_blank(), legend.position = "bottom")
